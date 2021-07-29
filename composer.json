@@ -1,0 +1,17 @@
+{
+    "name": "wil7/mvc_securisee",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tyana94",
+            "email": "rilcy.tatiana@hotmail.fr"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "^2.0"
+    }
+}

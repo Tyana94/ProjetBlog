@@ -1,0 +1,748 @@
+@font-face {
+  font-family: 'robotoregular';
+  src: url('fonts/Roboto-Regular-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+body {
+  overflow-x :hidden;
+  /*overflow-x: scroll;*/
+  margin:0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+
+
+h1, h2, h3, h4 {
+  font-family: Georgia, Arial, serif;
+}
+
+h2
+{
+  text-align: center;
+  font-weight: bold;
+  padding-top: 10%;
+}
+
+h5 {
+  padding-top: 20px;
+}
+
+
+.title-intro h1
+{
+  padding-top: 50%;
+}
+
+a {
+  color:#7e5835;
+}
+
+
+
+/************************************* MENU DE NAVIGATION ****************************************************************************************************
+********************************************************************************************************************************************************************************************************/
+/* Barre de navigation */
+#mainNav {
+  background-color: #d2b48c; /* Le fond de la barre de navigation sera beige */
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border: none;
+}
+
+#mainNav .navbar-toggler {
+  font-size: 12px;
+  right: 0;
+  padding: 13px;
+  text-transform: uppercase;
+  color: white;
+  border: 0;
+  background-color: rgb(166 166 83);
+}
+
+/* Logo */
+#mainNav .logo-festival {
+  max-height: 50px; /* Réglage de la hauteur max du logo */
+}
+
+
+/* Liens menu */
+#mainNav .navbar-nav .nav-item .nav-link { /* Réglages du menu de navigation */
+  font-size: 90%;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: white;
+  padding: 10px;
+}
+
+#mainNav .navbar-nav .nav-item, #mainNav .navbar-nav .nav-item .nav-link:hover {
+  color: #7e5835; /* Le texte des sections passe au marron au survol */
+  font-weight: bold;
+}
+
+
+nav {
+  width: 100%;
+}
+
+nav > ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+nav li {
+  list-style-type: none;
+}
+
+nav > ul > li {
+  float: left;
+  position: relative;
+}
+
+nav > ul::after {
+  display: table;
+  clear:both;
+}
+
+nav label {
+  display: none;
+}
+
+nav a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+nav > ul >li > a {
+  padding: 20px 30px;
+  color: #FFF;
+}
+
+nav > ul> li:hover a {
+  padding: 15p 30px 20px 30px;
+}
+
+
+ /**** BANNIERE ***************************************************************************************************
+***************************************************************************************************************************************************************************************************************************/
+
+.container-fluid2 {
+  position: relative;
+  overflow-x :hidden;
+  margin: auto;
+  padding: auto;
+}
+
+.title-intro {
+  position: absolute;
+  top: 18%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+}
+
+
+/*************** A PROPOS DE MOI **************************************************************************************************
+***************************************************************************************************************************************************************************************************************************/
+
+.texte1 { border: 1px solid black;
+  margin-top: 50px;
+  padding: 10px;
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 50px;
+}
+
+.texte1 ul {
+  font-style: italic;
+  list-style-type: none;
+}
+
+.texte1 h2{
+  padding-top: 2%;
+}
+
+
+
+/*************** Liste des posts **************************************************************************************************
+******************************************************************************************************************************************/
+.news h4 {
+  background-color: rgb(243 239 235);
+}
+
+.news h1, h4
+{
+  text-align:center;
+  font-weight: bold;
+}
+
+.news h4 {
+
+  font-weight: bold;
+  color:black;
+}
+
+.news p
+{
+  background-color:white;
+  border: 3px whitesmoke outset;
+}
+
+.news
+{
+  width:70%;
+  margin:auto;
+
+}
+
+.news a
+{
+  text-decoration: none;
+  color: yellowgreen;
+}
+
+.partage {
+  text-align: center;
+  font-weight: bold;
+}
+
+/*************** CONNEXION **************************************************************************************************
+**************************************************************************************************************/
+.connex {
+  margin-top: 95px;
+
+}
+
+.connex table {
+  margin-top: 20px;
+  margin-bottom: 220px;
+}
+
+.connex input[type=submit] {
+  background-color: #d2b48c;
+  color: #080808;
+  border:1px solid;
+  padding: 5px;
+  transition: all 0.5s ease;
+}
+
+.connex input[type=submit]:hover {
+  background-color: #7e5835;
+  color: white;
+}
+
+/*************** INSCRIPTION **************************************************************************************************
+**************************************************************************************************************/
+
+.inscrip {
+  margin-top: 10px;
+  padding-bottom: -70px;
+}
+
+.inscrip table {
+  margin-top: 20px;
+  margin-bottom: 250px;
+}
+
+.inscrip input[type=submit] {
+  background-color: #d2b48c;
+  color: #080808;
+  border:1px solid;
+  padding: 5px;
+  transition: all 0.5s ease;
+}
+
+.inscrip input[type=submit]:hover {
+  background-color: #7e5835;
+  color: white;
+}
+
+
+/*************** Ajouter un post ! **************************************************************************************************
+******************************************************************************************************************************************/
+.retour {
+  padding-top: 200px;
+  padding-left:10px;
+}
+
+.add_post h2 {
+  padding-top: 50px;
+}
+
+.add_post p{
+  text-align: center;
+}
+
+.crea_post input {
+  margin-bottom: 20px;
+
+}
+
+.basic {
+  margin-bottom: 20px;
+}
+
+.crea_post input[type=submit] {
+  background-color: #d2b48c;
+  color: #080808;
+  border:1px solid;
+  padding: 5px;
+  transition: all 0.5s ease;
+}
+
+.crea_post input[type=submit]:hover {
+  background-color: #7e5835;
+  color: white;
+}
+
+
+/*************** Modifier un post ! **************************************************************************************************
+******************************************************************************************************************************************/
+.modif_post {
+  margin-bottom: -41px;
+}
+
+.modif_post h2 {
+  padding-top: 90px;
+}
+
+.edit_post p {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.edit_post input {
+  margin-bottom: 20px;
+  margin-top: 2px;
+}
+
+
+.edit_post textarea {
+  margin-bottom: 20px;
+  margin-top: 2px;
+}
+
+.edit_post input[type=submit] {
+  background-color: #d2b48c;
+  color: #080808;
+  border:1px solid;
+  padding: 5px;
+  transition: all 0.5s ease;
+}
+
+.edit_post input[type=submit]:hover {
+  background-color: #7e5835;
+  color: white;
+}
+
+
+
+/*************** Ajouter un commentaire ! **************************************************************************************************
+******************************************************************************************************************************************/
+
+.add_comment {
+  display: flex;
+}
+
+.inscrip p {
+  padding-left:10px;
+  border: 3px whitesmoke none;
+}
+
+
+/*************** PROFIL ADMIN ! **************************************************************************************************
+******************************************************************************************************************************************/
+.admin {
+  padding-bottom: 195px;
+}
+
+.present p {
+  text-align: center;
+  font-weight: bold;
+
+}
+
+.btnadd a {
+  font-weight: bold;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
+.articles a {
+
+  font-weight: bold;
+  padding-bottom: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #7e5835;
+}
+
+.articles li {
+  padding-left:50px;
+}
+
+.articles p {
+  font-weight: bold;
+  padding-left:50px;margin-top: 50px;
+}
+
+.btnsup {
+  font-weight: bold;
+  padding-bottom: 100px;
+  padding-left: 22%;
+
+}
+
+.droits p {
+  padding-left:50px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.verif p {
+  padding-left:50px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.verif li {
+    padding-left:50px;
+}
+
+.verif a {
+
+  font-weight: bold;
+  padding-bottom: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #7e5835;
+}
+
+.deconnect  {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+
+/*************** PROFIL UTILISATEUR ! **************************************************************************************************
+******************************************************************************************************************************************/
+.profil {
+  padding-bottom: 195px;
+}
+
+
+
+/************************** NOUS CONTACTER***************************************************************************************************
+*********************************************************************************************************************************************/
+.mailform {
+  overflow-x :hidden;
+  padding-bottom: 50px;
+  padding-top: 50px;
+
+}
+
+.mailform h3 {
+  text-align: left;
+  margin-left: 80px;
+  background-color: white;
+ }
+
+ .mailform p {
+  margin-left: 50px;
+ }
+
+.mailform input {
+ margin-left: 50px;
+}
+
+.mailform textarea {
+  margin-left: 50px;
+ }
+
+
+/*************** Footer **************************************************************************************************
+******************************************************************************************************************************************/
+
+.social-buttons li a {
+  font-size: 20px;
+  line-height: 40px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  color: white;
+  outline: none;
+  background-color: #7e5835;
+  overflow: hidden;
+  margin-left: 5px;
+  margin-top: 10px;
+  padding-left: 12px;
+}
+
+.bi-twitter {
+  margin-top: 0px;
+}
+
+ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
+  background-color: #d2b48c;
+}
+
+.copyright {
+  position: flex;
+  bottom: 0;
+  background-color: rgb(243 239 235);
+  width: 90%;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************************Réglage générale Responsive********************************************************************************************/
+
+@media all and (max-width: 1024px)
+{
+  .texte1 {
+    width:100%;
+    position: relative;
+    margin-top: 100px;
+	}
+
+  .container-fluid2 {
+    display: none;
+  }
+}
+
+
+@media all and (max-width: 1024px)
+{
+
+
+}
+
+@media(max-width:1840px)
+{
+
+  body {
+    overflow-x :hidden ;
+  }
+
+  .photo1 img{
+    width: 150%;
+  }
+}
+
+@media(max-width:1216px)
+  {
+
+  body {
+    overflow-x :hidden ;
+  }
+
+  .photo1 img {
+    width: 145%;
+  }
+}
+
+@media all and (max-width: 1024px)
+{
+  nav {
+    width: auto;
+    text-align: left;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav li {
+    padding-left: 4px;
+  }
+
+  .photo1 img {
+    width: 90%;
+  }
+
+  .section2 {
+    width: auto;
+    text-align: center;
+    flex-direction: column;
+    margin-left: -10px;
+    margin-right: 10px;
+  }
+
+  .texte2 {
+    flex-direction: column;
+    width: auto;
+    margin-bottom: 15px;
+    text-align: center;
+    width:100%;
+    position: relative;
+    margin-left: 0;
+  }
+
+  .actualites {
+    flex-direction: column;
+  	width: auto;
+  	margin-bottom: 15px;
+  	text-align: center;
+  }
+
+
+  .card-title, .card-text {
+    text-align: center;
+ }
+
+ .card-body > .btnactu {
+    text-align: center;
+ }
+
+ .titre {
+    margin: auto;
+    font-size: 30px;
+    padding-top: 4%;
+    padding-bottom: 3%;
+    text-align: center;
+ }
+}
+
+
+/****Bannière****/
+@media all and (max-width: 1024px)
+{
+
+  .title-intro {
+    margin-top: -90px;
+ }
+
+  .title-intro > h1 {
+    font-size: 25px;
+ }
+
+  .title-intro > h2 {
+    font-size: 15px;
+ }
+
+  .title-intro > h3 {
+    font-size: 10px;
+ }
+
+}
+
+
+
+@media all and (max-width: 720px)
+{
+  #festival {
+    padding-top: 5%;
+ }
+
+  .title-content {
+    display: none;
+}
+
+  .title-intro{
+    margin-top: -80px;
+  }
+
+  .title-intro > h1 {
+    font-size: 20px;
+  }
+  .title-intro > h2 {
+    font-size: 12px;
+  }
+
+  .title-intro > h3 {
+    font-size: 7px;
+  }
+  .title-intro > h4 {
+    display: none;
+  }
+}
+
+@media all and (max-width: 1024px)
+{
+    .container-fluid {
+      display: none;
+  }
+}
+@media all and (max-width: 1024px)
+{
+    .container-fluid {
+      display: none;
+    }
+}
