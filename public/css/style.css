@@ -214,7 +214,8 @@ nav > ul> li:hover a {
 /*************** CONNEXION **************************************************************************************************
 **************************************************************************************************************/
 .connex {
-  margin-top: 95px;
+  margin-top: 125px;
+  
 
 }
 
@@ -240,8 +241,8 @@ nav > ul> li:hover a {
 **************************************************************************************************************/
 
 .inscrip {
-  margin-top: 10px;
-  padding-bottom: -70px;
+  margin-top: 42px;
+  
 }
 
 .inscrip table {
@@ -266,12 +267,15 @@ nav > ul> li:hover a {
 /*************** Ajouter un post ! **************************************************************************************************
 ******************************************************************************************************************************************/
 .retour {
-  padding-top: 200px;
+  padding-top: 100px;
   padding-left:10px;
+  padding-bottom: -5px;
+  color: #7e5835;
+
 }
 
 .add_post h2 {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 .add_post p{
@@ -367,10 +371,9 @@ nav > ul> li:hover a {
 
 }
 
-.btnadd a {
+.ajout {
+  padding-left:50px;
   font-weight: bold;
-  padding-bottom: 25px;
-  text-align: center;
 }
 
 .articles a {
@@ -388,7 +391,8 @@ nav > ul> li:hover a {
 
 .articles p {
   font-weight: bold;
-  padding-left:50px;margin-top: 50px;
+  padding-left:50px;
+  margin-top: 50px;
 }
 
 .btnsup {
@@ -436,7 +440,27 @@ nav > ul> li:hover a {
   padding-bottom: 195px;
 }
 
+.com p {
+  text-align: center;
+  padding-left:50px;
+}
 
+.com li {
+  padding-left:50px;
+}
+
+.com li a {
+  font-weight: bold;
+}
+
+.auto h3 {
+  text-align: center;
+}
+
+.btnsup {
+  text-align: center;
+  font-weight: bold;
+}
 
 /************************** NOUS CONTACTER***************************************************************************************************
 *********************************************************************************************************************************************/
@@ -498,13 +522,37 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   background-color: rgb(243 239 235);
   width: 90%;
 
-
 }
 
+/*************** PAGE 404 *********************************
+****************************************************/
+.pagerr h1 {
+  text-align: center;
+  margin-top: 220px;
+  margin-bottom: 100px;
+}
 
+.pagerr h3 {
+  margin-top: 10px;
+  margin-bottom: 50px;
+  text-align: center;
+  margin-top: 20px;
+}
 
+.pagerr h4 {
+  margin-top: 10px;
+  margin-bottom: 150px;
+  text-align: center;
+  margin-top: 20px;
+}
 
-
+.retour p {
+  text-align: center;
+  margin-top: -200px;
+  margin-bottom: 48px;
+  
+  
+}
 
 
 

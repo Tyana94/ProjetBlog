@@ -2,42 +2,83 @@
 
 namespace App\Controller;
 
-/*require('app/model/Model.php');
-require('app/model/Post.php');
-require('app/model/Comment.php');
-*/
+use App\Model\Post;
+
 class Frontend {
 
-    function index()
+    function home()
     {
+        $model = new Post();
+        $posts = $model->all();
 
-        $modelPost = new \App\Model\Post();
-        $posts = $modelPost->all();
+        include('../app/views/home.php');
+    }
 
-        require('http://localhost/blog/public/');
+
+    function lost()
+    {
+        $model = new Post();
+        $posts = $model->all();
+
+        include('../app/views/404.php');
+    }
+
+
+    function inscription()
+    {
+        $model = new Post();
+        $posts = $model->all();
+
+        include('../app/views/inscription.php');
 
     }
 
-    function add()
-    {
-        $modelPost = new \App\Model\Post();
-        $post = $modelPost->get($_GET['id']);
-        $modelComment = new \App\Model\Comment();
-        $comments = $modelComment->allForArticle($_GET['id']);
 
-        require('../app/view/frontend/postView.php');
+    function login()
+    {
+        $model = new Post();
+        $posts = $model->all();
+
+        include('../app/views/connexion.php');
+
     }
 
-    function addtwo($getid, $user_id, $comment)
-    {
-        $modelComment = new \App\Model\Comment();
-        $affectedLines = $modelComment->add($getid, $user_id, $comment);
 
-        if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
-        }
-        else {
-            header('Location: ../public/index.php?action=post&id=' . $getid);
-        }
+    //function logout()
+    //{
+    //    $model = new Post();
+    //    $posts = $model->all();
+
+    //    include('../app/views/deconnexion.php');
+
+   // }
+
+
+
+    function contact()
+    {
+        $model = new Post();
+        $posts = $model->all();
+
+        include('../app/views/contact.php');
     }
+
+
+    function profil()
+    {
+        $model = new Post();
+        $posts = $model->all();
+
+        include('../app/views/profil.php');
+    }
+
+
+    function admin()
+    {
+        $model = new Post();
+        $posts = $model->all();
+
+        include('../app/views/admin.php');
+    }
+
   }

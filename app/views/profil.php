@@ -1,6 +1,7 @@
 
-  <?php @session_start();
-$db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+  <?php 
+   session_start();
+   $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 
 if(isset($_GET['id']) AND $_GET['id'] > 0) {
     $getid = intval($_GET['id']);
@@ -8,6 +9,10 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
     $requser->execute(array($getid));
     $userinfo = $requser->fetch();
 }
+   $posts = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,4');
+   $post = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,4');
+   $content = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,4');
+  
 ?>
 
 <!DOCTYPE html>
@@ -27,21 +32,29 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
   <body>
-      <?php include("../app/view/menu.php"); ?>
+      <?php include("../app/views/menu.php"); ?>
       <div class="profil">
           <h2>Bonjour <?= $_SESSION["user"]["pseudo"] ?></h2>
           <p>Email : <?= $_SESSION["user"]["email"] ?></p>
       </div>
-      <h2>Il vous est désormais possible de laisser vos commentaires sous les diférents posts.</h2>
-      <p>Bonne navigation !!!</p>
-      <div class="btnsup">
-          <a href="../app/view/deconnexion.php">Se déconnecter</a>
+      <div class="auto">
+          <h4>Il vous est désormais possible de laisser vos commentaires pour les différents posts.</h4> 
+          <h4>Pour cela rendez-vous à la page des de détail d'un post.</h4>
+          <div class="com">
+            <p>Ajouter un commentaire : </p>
+              <?php while($p = $posts->fetch()) { ?>
+              <li><?= $p['id'] ?> : <?= $p['title'] ?><br /><?= $p['content'] ?><?php if($p['content']== 0) { ?> <a href="http://localhost/blog/public/post-['id']?action=post&amp;id=<?= $p['content'] ?>">Lire la suite</a> <br /><br /> <a href="http://localhost/blog/public/aaddcom<?= $p['id'] ?>">Ajouter</a><?php } ?> </li><br />
+              <?php } ?>
+          </div>
+          <div class="btnsup">
+              <a href="../app/views/deconnexion.php">Se déconnecter</a>
+          </div>
       </div>
 
 
 
 
-<?php include("../app/view/footer.php"); ?>
+<?php include("../app/views/footer.php"); ?>
 
   </body>
 </html>

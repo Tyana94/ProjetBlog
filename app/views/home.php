@@ -1,24 +1,13 @@
-<?php  @session_start();
-$db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-
-
-
-
-
-
-
-?>
-
 <?php ob_start(); ?>
 
+
 <?php $title = 'Mon blog'; ?>
-<?php require('../app/model/Model.php'); ?>
-<?php require('../app/model/Post.php'); ?>
+
 <!-- <Menu -->
-<?php include("../app/view/menu.php"); ?>
+<?php include("../app/views/menu.php"); ?>
 
 <!--banniere ----------------------------------------->
-<?php include("../app/view/banniere.php"); ?>
+<?php include("../app/views/banniere.php"); ?>
 
                   <!--A PROPOS DE MOI ----------------------------------------->
   <div class="container" id="moi">
@@ -36,7 +25,7 @@ $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
                  </ul>
               </p><br />
               <p>
-                Vous souhaitez en savoir plus sur mon parcours professionnel et personnel, n'hésitez pas à consulter mon <a class="nav-link" href="cv/cv_developpeuse_php.pdf"><b>Curriculum Vitae</b></a>
+                Vous souhaitez en savoir plus sur mon parcours professionnel et personnel, n'hésitez pas à consulter mon <a class="nav-link" href="public/cv/cv_developpeuse_php.pdf"><b>Curriculum Vitae</b></a>
               </p>
              </div>
           </div>
@@ -49,6 +38,7 @@ $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 
 <?php
 foreach ($posts as $post) {
+  //echo '<a href="articles/' . $post['id'] . '/">' . $post['title'] . '</a><br>';
 ?>
 
     <div class="news">
@@ -60,17 +50,16 @@ foreach ($posts as $post) {
             <em>le <?= $post['creation_date_fr'] ?></em><br />
             <?= nl2br(htmlspecialchars($post['content'])) ?>
             <br />
-            <em><a href="../public/index.php?action=post&amp;id=<?= $post['id'] ?>">Lire la suite</a></em>
+            <em><?= '<a href="articles/' . $post['id'] . '/">Lire la suite</a>' ?></em>
         </p>
     </div>
 <?php
-}
+} 
 ?>
 
-
-<?php include('../app/view/contact.php'); ?>
-<?php include('../app/view/footer.php'); ?>
+<?php include('../app/views/contact.php'); ?>
+<?php include('../app/views/footer.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../app/view/frontend/template.php'); ?>
+<?php require('../app/views/frontend/template.php'); ?>

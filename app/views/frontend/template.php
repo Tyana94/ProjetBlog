@@ -10,13 +10,12 @@
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
         <meta http-equiv="pragma" content="no-cache" />
         <title><?= $title ?></title>
-        <link href="../public/css/style.css" rel="stylesheet" type="text/css"   />
+        <link href="public/css/style.css" rel="stylesheet" type="text/css"   />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
 
     <body>
-        Erreur 404
-        La page demandée n'existe pas.
+        <?= $content ?>
     </body>
 </html>

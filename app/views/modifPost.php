@@ -70,7 +70,7 @@ if(isset($_POST['post_title'], $_POST['post_content'], $_POST['post_contents'], 
         <textarea name="post_content" placeholder="Chapo"><?php if($mode_edition == 1) { ?><?= $edit_post['content'] ?><?php } ?></textarea><br />
         <p>Contenu du post : </p>
         <textarea rows="5" cols="50" name="post_contents" placeholder="Contenu de l'article"><?php if($mode_edition == 1) { ?><?= $edit_post['contents'] ?><?php } ?></textarea><br />
-        <p>Identifiant : </p>
+        <p>Identifiant du rédacteur : </p>
         <textarea name="post_user_id" placeholder="Identifiant"><?php if($mode_edition == 1) { ?><?= $edit_post['user_id'] ?><?php } ?></textarea><br />
         <input type="submit" value="Envoyer l'article" />
     </form>

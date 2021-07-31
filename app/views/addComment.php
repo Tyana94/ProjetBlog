@@ -6,7 +6,7 @@ $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
             $getid = htmlspecialchars($_GET['id']);
 
             $post = $db->prepare('SELECT * FROM posts WHERE id = ?');
-            $post->execute(array($getid));
+            $post->execute(array($id));
             $post = $post->fetch();
 
             if(isset($_post['submit_comment'])) {
@@ -28,7 +28,7 @@ $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
             }
             $comments = $db->prepare('SELECT * FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
             $comments->execute(array($getid));
-
+        }
 ?>
 
 
@@ -49,10 +49,11 @@ $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
     </form>
 </div>
 
+
 <?php
-  //  if(isset($_SESSION['ROLE_USER']))
-//  if($_SESSION["user"] = ["ROLE_USER"])
-    { ?>
+  
+  if(isset($_SESSION['id']) AND $_SESSION['USER'] == 1) {
+  ?>
         <div>
             <input type="submit" value="Poster commentaire" name="submit_comment" />
         </div>
@@ -60,14 +61,13 @@ $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 
 
 
-<?php if(isset($c_msg)) { echo $c_msg; } ?>
+    <?php
+if(isset($_SESSION['id']) AND $_SESSION['approuve'] == 1) { ?>    
+    <?php if(isset($c_msg)) { echo $c_msg; } ?>
 <br />
 <?php while($c = $comments->fetch()) { ?>
-
-
 <p><strong><?php echo htmlspecialchars($c['user_id']); ?></strong> le <?php echo $c['comment_date'] ?>; </p>
 <p><?php echo nl2br(htmlspecialchars($c['comment'])); ?></p>
-
 <?php } ?>
 
 <?php

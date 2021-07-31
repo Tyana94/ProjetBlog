@@ -1,9 +1,5 @@
 <?php
 @session_start();
-if(isset($_SESSION["user"])) {
-    header("Location: ../app/view/profil.php");
-    exit;
-}
 
 $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 
@@ -49,10 +45,10 @@ if(!empty($_POST)) {
                 // On peut rediriger vers la page profil
                 if($_SESSION["roles"] === $_SESSION["ROLE_ADMIN"]) {
                 // On peut rediriger vers la page profil
-                      header("Location: http://localhost/blog/public/admin");
+                      header("Location: http://localhost/blog/admin");
                   }
                   if($_SESSION["roles"] === $_SESSION["ROLE_USER"]) {
-                      header("Location: http://localhost/blog/public/profil");
+                      header("Location: http://localhost/blog/user");
                   }
             }
         }
@@ -72,12 +68,12 @@ if(!empty($_POST)) {
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
         <meta http-equiv="pragma" content="no-cache" />
         <title><?= $title ?></title>
-        <link href="../public/css/style.css" rel="stylesheet" type="text/css"   />
+        <link href="public/css/style.css" rel="stylesheet" type="text/css"   />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
   <body>
-<?php include("../app/view/menu.php"); ?>
+<?php include("../app/views/menu.php"); ?>
        <div class="connex" align="center">
           <h2>Connexion</h2>
           <?php
@@ -126,6 +122,6 @@ if(!empty($_POST)) {
           }
           ?>
       </div>
-      <?php include("../app/view/footer.php"); ?>
+      <?php include("../app/views/footer.php"); ?>
   </body>
 </html>
