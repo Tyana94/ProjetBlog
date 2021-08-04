@@ -3,7 +3,8 @@
    session_start();
    $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 
-if(isset($_GET['id']) AND $_GET['id'] > 0) {
+
+   if(isset($_GET['id']) AND $_GET['id'] > 0) {
     $getid = intval($_GET['id']);
     $requser = $db->prepare('SELECT * FROM user4 WHERE id = ?');
     $requser->execute(array($getid));
@@ -12,7 +13,8 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
    $posts = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,4');
    $post = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,4');
    $content = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,4');
-  
+   $user = $db->query('SELECT * FROM user4 WHERE username = ? email = ?');
+
 ?>
 
 <!DOCTYPE html>
@@ -32,29 +34,29 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
   <body>
-      <?php include("../app/views/menu.php"); ?>
+      
       <div class="profil">
           <h2>Bonjour <?= $_SESSION["user"]["pseudo"] ?></h2>
           <p>Email : <?= $_SESSION["user"]["email"] ?></p>
       </div>
       <div class="auto">
-          <h4>Il vous est désormais possible de laisser vos commentaires pour les différents posts.</h4> 
-          <h4>Pour cela rendez-vous à la page des de détail d'un post.</h4>
+          <h4>Il vous est désormais possible de laisser vos commentaires sous les articles.</h4> 
+          
           <div class="com">
-            <p>Ajouter un commentaire : </p>
+            
               <?php while($p = $posts->fetch()) { ?>
-              <li><?= $p['id'] ?> : <?= $p['title'] ?><br /><?= $p['content'] ?><?php if($p['content']== 0) { ?> <a href="http://localhost/blog/public/post-['id']?action=post&amp;id=<?= $p['content'] ?>">Lire la suite</a> <br /><br /> <a href="http://localhost/blog/public/aaddcom<?= $p['id'] ?>">Ajouter</a><?php } ?> </li><br />
+              <li><?= $p['id'] ?> : <b><?= $p['title'] ?></b><br /><?= $p['content'] ?><?php if($p['content']== 0) { ?> <br /> <a href="/blog/article/<?= $p['id'] ?>/">Ajouter</a><?php } ?> </li><br /><br />
               <?php } ?>
           </div>
           <div class="btnsup">
-              <a href="../app/views/deconnexion.php">Se déconnecter</a>
+              <a href="http://localhost/blog/logout">Se déconnecter</a>
           </div>
       </div>
 
 
 
 
-<?php include("../app/views/footer.php"); ?>
+<?php include("../app/includes/footer.php"); ?>
 
   </body>
 </html>

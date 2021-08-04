@@ -27,16 +27,17 @@ if(isset($_POST['post_title'], $_POST['post_content'], $_POST['post_contents'], 
         $post_contents = htmlspecialchars($_POST['post_contents']);
         $post_user_id = htmlspecialchars($_POST['post_user_id']);
 
-        if($mode_edition == 0) {
-        $ins = $db->prepare('INSERT INTO posts (title, content, contents, user_id, creation_date) VALUES (?,?,?,?, NOW())');
-        $ins->execute(array($post_title, $post_content, $post_contents, $post_user_id));
-            $message ="<span style='color:green'>Votre article a bien été posté</span>";
-      }
+        if($mode_edition == 1) {
+            $update = $db->prepare('UPDATE posts SET title = ?, content = ?, contents = ?, user_id = ?, edition_date = NOW() WHERE id = ?');
+            $update->execute(array($post_title, $post_content, $post_contents, $post_user_id, $edit_id));
+            $message ="<span style='color:green'>Votre article a bien été mis à jour</span>";
+        }
 
-    } else {
-        $message = 'Veuillez remplir tous les champs';
+        } else {
+            $message = "<span style='color:red'>Veuillez remplir tous les champs</span>";
+        }
     }
-}
+
 ?>
 
 
@@ -52,31 +53,32 @@ if(isset($_POST['post_title'], $_POST['post_content'], $_POST['post_contents'], 
         <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
         <meta http-equiv="pragma" content="no-cache" />
         <title><?= $title ?></title>
-        <link href="public/css/style.css" rel="stylesheet" type="text/css"   />
+        <link href="/blog/public/css/style.css" rel="stylesheet" type="text/css"   />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
-<body>
-<?php include("../app/views/menu.php"); ?>
-    <div class="retour">
-        <p><a href="http://localhost/blog/"> <<< Retour</a></p>
+ <body>
+ 
+    <div class="retourne">
+        <p><a href="/blog/"> <<< Retour</a></p>
     </div>
-
+    <?php include("../app/includes/menu.php"); ?>
     <div class="add_post" align="center">
             <h2>Ajouter un post au blog</h2><br />
             <p>Pour cela, veuillez renseignez tous les champs.</p>
-            <form class="crea_post" method="POST">
-                <input type="text" class="basic" name="post_title" placeholder="Titre"<?php if($mode_edition == 1) { ?> value="<?= $edit_post['title'] ?>"<?php } ?> /><br />
-                <textarea name="post_content" class="basic" placeholder="Chapo"><?php if($mode_edition == 1) { ?><?= $edit_post['content'] ?><?php } ?></textarea><br />
-                <textarea rows="5" cols="50" name="post_contents" class="basic" placeholder="Contenu de l'article"><?php if($mode_edition == 1) { ?><?= $edit_post['contents'] ?><?php } ?></textarea><br />
-                <textarea name="post_user_id" class="basic" placeholder="Identifiant"><?php if($mode_edition == 1) { ?><?= $edit_post['user_id'] ?><?php } ?></textarea><br />
+            <form class="crea_post" method="POST" action="/blog/posts/<?= $post['id'];?>/insert">
+                <input type="text" class="basic" name="post_title" placeholder="Titre" value="<?= strip_tags($post['title']) ?>" /><br />
+                <textarea name="post_content" class="basic" placeholder="Chapo"><?= strip_tags($post['content']) ?></textarea><br />
+                <textarea rows="5" cols="50" name="post_contents" class="basic" placeholder="Contenu de l'article"><?= $post['contents'] ?></textarea><br />
+                <textarea name="post_user_id" class="basic" placeholder="Identifiant"><?= $post['user_id'] ?></textarea><br />
                 <input type="submit" value="Envoyer l'article" />
             </form>
         </div>
 
+
     <?php if(isset($message)) { echo $message; } ?>
     <br /><br /><br />
-    <?php include("../app/views/footer.php"); ?>
+    <?php include("../app/includes/footer.php"); ?>
 
-</body>
+ </body>
 </html>

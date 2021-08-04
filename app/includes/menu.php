@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-3">
-          <a class="navbar-brand" href="http://localhost/blog/"><img class="logo-blog" src="public/images/logo.jpg" alt="Logo blog"> </a>
+          <a class="navbar-brand" href="http://localhost/blog/"><img class="logo-blog" src="/blog/public/images/logo.jpg" alt="Logo blog"> </a>
         </div>
       </div>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,21 +20,21 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/blog/"><b>Accueil</b></a>
+                  <a class="nav-link" href="/blog/"><b>Accueil</b></a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="public/cv/cv_developpeuse_php.pdf"><b>CV</b></a>
               </li>
               <?php if(!isset($_SESSION["user"])): ?>
               <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/blog/login"><b>Connexion</b></a>
+                  <a class="nav-link" href="/blog/login"><b>Connexion</b></a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/blog/inscription" class="bnt btn-primary btn-lg" data-toggle="modal" data-target="#"><b>Inscription</b></a>
+                  <a class="nav-link" href="/blog/inscription" class="bnt btn-primary btn-lg" data-toggle="modal" data-target="#"><b>Inscription</b></a>
              </li>
              <?php else: ?>
              <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/blog/logout"><b>Déconnexion</b></a>
+                  <a class="nav-link" href="/blog/logout"><b>Déconnexion</b></a>
               </li>
               <?php endif; ?>
          </ul>

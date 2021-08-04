@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row copyright">
             <div class="col-md-9">
-                <p><a href="http://localhost/blog/">Retour à l'accueil</a> - <a href="<?=("http://localhost/blog/login") ;?>">Page d'administration</a></p>
+                <p><a href="/blog/">Retour à l'accueil</a> - <a href="<?=("/blog/login") ;?>">Page d'administration</a></p>
                 <span class="copyright">Copyright © Tatiana RILCY 2021</span>
             </div>
             <div class="col-md-3">

@@ -1,7 +1,82 @@
 <?php
 @session_start();
+
 $db = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
 
+
+
+if(isset($_SESSION["user"])) {
+  header("Location: ../app/views/profil.php");
+  exit;
+}
+
+// On vérifie si le formulaire a été envoyé
+if(!empty($_POST)) {
+
+// On vérifie que tous les champs requis sont remplis
+  if(isset($_POST["pseudo"], $_POST["email"], $_POST["password"])
+      && !empty($_POST["pseudo"]) && !empty($_POST["email"]) && !empty($_POST["password"])) {
+         
+         // Patch XSS
+          $pseudo = htmlspecialchars($_POST['pseudo']);
+          $_SESSION["error"] = [];
+
+          if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+              $_SESSION["error"][] = "<span style='color:red'>L'adresse email est incorrecte.</span>";
+          } 
+
+          //On va hasher le mot de passe
+          $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+
+          $reqpseudo = $db->prepare("SELECT * FROM users4 WHERE username = ?");
+          $reqpseudo->execute(array($pseudo));
+          $pseudoexist = $reqpseudo->rowCount();
+          if($pseudoexist == 0) {
+
+          } else {
+              $error = "<span style='color:red'>Pseudo déjà utilisé.</span>";
+          }
+
+
+          $reqemail = $db->prepare("SELECT * FROM users4 WHERE email = ?");
+          $reqemail->execute(array($email));
+          $emailexist = $reqemail->rowCount();
+          if($emailexist == 0) {
+
+          } else {
+              $error = "<span style='color:red'>Adresse email déjà utilisée.</span>";
+          }
+
+
+          // On enregistre en bdd
+          $sql = "INSERT INTO users4 (username, email, password, roles) VALUES (:pseudo, :email, '$password', '[\"ROLE_USER\"]')";
+
+          $query = $db->prepare($sql);
+          $query->bindValue(":pseudo", $pseudo, PDO::PARAM_STR);
+          $query->bindValue(":email", $_POST["email"], PDO::PARAM_STR);
+          $query->execute();
+
+          // On récupère l'id du nouvel l'utilisateur
+          $id = $db->lastInsertId();
+
+
+          // On stock dans $_SESSION les données de l'utilisateur
+          $_SESSION["user"] = [
+              "id" => $id,
+              "pseudo" => $pseudo,
+              "email" => $_POST["email"],
+              "roles" => ["ROLE_USER"]
+          ];
+
+          // On peut rediriger vers la page profil
+          header("Location: ../app/views/profil.php");
+
+                  } else {
+                      $_SESSION["error"] = ["<span style='color:red'>Le formulaire est incomplet.</span>"];
+                  }
+
+          }
 
 
 if(isset($_GET['approuve']) AND !empty($_GET['approuve'])) {
@@ -20,7 +95,10 @@ if(isset($_GET['supprime']) AND !empty($_GET['supprime'])) {
 }
 
 $comments = $db->query('SELECT * FROM comments ORDER BY id DESC LIMIT 0,5');
-$posts = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,5');
+$posts = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,5');    
+$user = $db->query('SELECT * FROM user4 WHERE username = ? email = ?');
+
+
 ?>
 
 <!DOCTYPE html>
@@ -40,31 +118,34 @@ $posts = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,5');
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-    <?php include("../app/views/menu.php"); ?>
-      <div class="present">
+    <?php include("../app/includes/menu.php"); ?>
+      
+    
+    <div class="present">
           <h2>Bonjour <?= $_SESSION["user"]["pseudo"] ?></h2>
-          <p>Email : <?= $_SESSION["user"]["email"] ?></p>
+          <p>Email : <?= $_SESSION["user"]["email"] ?> </p>    
+          
       </div>
 
       <div class="droits">
-          <p>Vous avez la possibilité de : </p>          
+          <h5><p>Vous avez la possibilité de : </p> </h5>         
       </div>
       <div class="ajout">
-          <a href="<?=("http://localhost/blog/addpost") ;?>">Ajouter un post</a><br />
+          <u><a href="<?=("/blog/addpost") ;?>">Ajouter un post</a></u><br />
       </div>
 
       <div class="articles">
-        <p>Modifier ou supprimer un post : </p>
+        <p><u>Modifier ou supprimer un post : </u></p>
           <?php while($p = $posts->fetch()) { ?>
-          <em><li><?= $p['id'] ?> : <?= $p['title'] ?><br /><?= $p['content'] ?><?php if($p['content']== 0) { ?> <br /> <a href="../app/views/modifPost.php?edit=<?= $p['id'] ?>">Modifier</a><?php } ?> - <a href="../app/views/deletePost.php<?= $p['id'] ?>">Supprimer</a></li></em><br />
-          <?php } ?>
+          <em><li><?= $p['id'] ?> : <b><?= $p['title'] ?></b><br /><?= $p['content'] ?><?php if($p['content']== 0) { ?> <br /> <a href="/blog/posts/<?= $post['id'];?>/update">Modifier</a><?php } ?> - <a href="/blog/posts/<?= $post['id'];?>/delete">Supprimer</a></li></em><br />
+          <?php } ?>                                                                                                                                                                                                                                                                                                                                
       </div>
 
       <div class="verif">
-          <p>Approuver ou supprimer les commentaires laissés par les utilisateurs : </p>
+          <p><u>Approuver ou supprimer les commentaires laissés par les utilisateurs : </u></p>
          <?php while($c = $comments->fetch()) { ?>
-          <em><li><?= $c['id'] ?> : <br /><?= $c['comment'] ?><?php if($c['approuve'] == 0) { ?>  <a href="../app/views/approuvCom.php<?= $c['id'] ?>">Approuver</a><?php } ?> - <a href="'../app/views/deleteCom.php<?= $c['id'] ?>">Supprimer</a></li></em><br />
-          <?php } ?>
+          <em><li><?= $c['id'] ?> : <br /><?= $c['comment'] ?><?php if($c['approuve'] == 0) { ?>  <a href="/blog/approuve/<?= $c['id'] ?>/">Approuver</a><?php } ?> - <a href="/blog/deletecom/<?= $c['id'] ?>/">Supprimer</a></li></em><br />
+          <?php } ?>                                                                                        
       </div>
 
       <div class="deconnect">
@@ -86,6 +167,6 @@ $posts = $db->query('SELECT * FROM posts ORDER BY id DESC LIMIT 0,5');
 
 
 
-    <?php include("../app/views/footer.php"); ?>
+    <?php include("../app/includes/footer.php"); ?>
   </body>
 </html>

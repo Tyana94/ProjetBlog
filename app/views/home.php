@@ -4,10 +4,10 @@
 <?php $title = 'Mon blog'; ?>
 
 <!-- <Menu -->
-<?php include("../app/views/menu.php"); ?>
+<?php include("../app/includes/menu.php"); ?>
 
 <!--banniere ----------------------------------------->
-<?php include("../app/views/banniere.php"); ?>
+<?php include("../app/includes/banniere.php"); ?>
 
                   <!--A PROPOS DE MOI ----------------------------------------->
   <div class="container" id="moi">
@@ -50,16 +50,16 @@ foreach ($posts as $post) {
             <em>le <?= $post['creation_date_fr'] ?></em><br />
             <?= nl2br(htmlspecialchars($post['content'])) ?>
             <br />
-            <em><?= '<a href="articles/' . $post['id'] . '/">Lire la suite</a>' ?></em>
+            <em><?= '<a href="article/' . $post['id'] . '/">Lire la suite</a>' ?></em>
         </p>
     </div>
 <?php
 } 
 ?>
-
 <?php include('../app/views/contact.php'); ?>
-<?php include('../app/views/footer.php'); ?>
+
+<?php include('../app/includes/footer.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('../app/views/frontend/template.php'); ?>
+<?php require('../app/includes/template.php'); ?>

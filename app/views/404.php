@@ -30,7 +30,7 @@
             </p>
         </div>
 
-<?php include('../app/views/footer.php'); ?>
+<?php include('../app/includes/footer.php'); ?>
 
     </body>
 </html>
